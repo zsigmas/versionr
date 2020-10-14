@@ -1,7 +1,7 @@
 Package: versionr
 Type: Package
 Title: What the Package Does (Title Case)
-Version: 0.0.1-3
+Version: 0.0.1-6
 Author: Luis Morís Fernández
 Maintainer: Luis Morís Fernández <luis.moris.fernandez@gmail.com>
 Description: Updates the version number in the description file using the git tags.
