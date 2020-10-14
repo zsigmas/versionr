@@ -36,3 +36,31 @@ clean_version_number <- function(ver_num) {
   commit_num <- ifelse(!is.na(commit_num),paste0('-', commit_num), '')
   return(paste0(ver_num, commit_num))
 }
+
+init <- function(path='.', .force_update_copy=F) {
+
+  origin_pre_commit_file <- system.file('pre-commit', package='versionr', mustWork = T)
+  origin_update_version_file <- system.file('update-version.R', package='versionr', mustWork = T)
+
+  target_pre_commit_file <- file.path(path, '.git', 'hooks', 'pre-commit')
+  target_update_version_file <- file.path(path, '.git', 'hooks', 'update-version.R')
+
+  if(file.exists(target_pre_commit_file)){
+    cat(paste0('File pre-commit already exists, paste the block below in the pre-commit file\n\n',
+               paste0(readLines(origin_pre_commit_file), collapse='\n'),
+               '\n')
+        )
+
+  }else{
+    print(paste('Copying Origin:', origin_pre_commit_file, '->', 'Target:', target_pre_commit_file))
+    file.copy(origin_pre_commit_file, target_pre_commit_file)
+  }
+
+  if(!file.exists(target_pre_commit_file) | .force_update_copy){
+    print(paste('Copying Origin:', origin_update_version_file, '->', 'Target:', target_update_version_file))
+    file.copy(origin_update_version_file, target_update_version_file)
+  }else{
+      warning('Update version file is already present, use .force_update_copy if you want it copied')
+  }
+
+}
