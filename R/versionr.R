@@ -12,7 +12,7 @@ update_version <- function(path='.') {
 }
 
 current_version <- function(path='.') {
-  con <- file('DESCRIPTION')
+  con <- file('DESCRIPTION')#
   on.exit(close(con))
 
   desc_content <- readLines(con)
