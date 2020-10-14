@@ -1,5 +1,5 @@
-update_version <- function() {
-  con <- file('DESCRIPTION')
+update_version <- function(path='.') {
+  con <- file('DESCRIPTION')#
   on.exit(close(con))
 
   desc_content <- readLines(con)
@@ -8,8 +8,7 @@ update_version <- function() {
   # browser()
   desc_content[version_idx] <- paste('Version:', clean_version_number(get_describe_head()))
   desc_content[date_idx] <- paste('Date:', date())
-  desc_content
-
+  writeLines(desc_content, con = con)
 }
 
 get_describe_head <- function() {

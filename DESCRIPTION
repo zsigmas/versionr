@@ -1,11 +1,10 @@
 Package: versionr
 Type: Package
 Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Version: 0.0.1-2
+Author: Luis Morís Fernández
+Maintainer: Luis Morís Fernández <luis.moris.fernandez@gmail.com>
+Description: Updates the version number in the description file using the git tags.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
