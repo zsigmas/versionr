@@ -1,5 +1,5 @@
-update_version <- function(path='.') {
-  con <- file('DESCRIPTION')#
+update_version <- function(path='.', print_output=F) {
+  con <- file('DESCRIPTION')
   on.exit(close(con))
 
   desc_content <- readLines(con)
@@ -11,7 +11,7 @@ update_version <- function(path='.') {
   desc_content[version_idx] <- paste('Version:', clean_version_number(get_describe_head()))
   desc_content[date_idx] <- paste('Date:', date())
   writeLines(desc_content, con = con)
-  return(desc_content)
+  if(print_output){return(desc_content)}
 }
 
 current_version <- function(path='.') {
