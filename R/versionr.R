@@ -5,10 +5,13 @@ update_version <- function(path='.') {
   desc_content <- readLines(con)
   version_idx  <- which(startsWith(desc_content, 'Version:'))
   date_idx  <- which(startsWith(desc_content, 'Date:'))
-  # browser()
+
+  if(length(date_idx)==0){date_idx=length(desc_content)+1}
+
   desc_content[version_idx] <- paste('Version:', clean_version_number(get_describe_head()))
   desc_content[date_idx] <- paste('Date:', date())
   writeLines(desc_content, con = con)
+  return(desc_content)
 }
 
 current_version <- function(path='.') {
