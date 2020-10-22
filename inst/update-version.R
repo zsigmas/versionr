@@ -5,7 +5,7 @@ tryCatch(
     }else{
       print(paste('From:', versionr::current_version(), 'to', clean_version_number(versionr::get_describe_head())))
       print(paste('Branch:', versionr::get_branch_name()))
-      print(paste('Commit:', versionr::get_commit_id()))
+      print(paste('ParentCommit:', versionr::get_parent_commit_id()))
       versionr::update_version()
     }
   },

@@ -6,7 +6,7 @@ update_version <- function(path='.', print_output=F) {
   version_idx  <- which(startsWith(desc_content, 'Version:'))
   date_idx  <- which(startsWith(desc_content, 'Date:'))
   branch_idx  <- which(startsWith(desc_content, 'Branch:'))
-  commit_idx <- which(startsWith(desc_content, 'Commit:'))
+  commit_idx <- which(startsWith(desc_content, 'ParentCommit:'))
   desc_content[version_idx] <- paste('Version:', clean_version_number(get_describe_head()))
 
   if(length(date_idx)==0){date_idx=length(desc_content)+1}
@@ -16,7 +16,7 @@ update_version <- function(path='.', print_output=F) {
   desc_content[branch_idx] <- paste('Branch:', get_branch_name())
 
   if(length(commit_idx)==0){commit_idx=length(desc_content)+1}
-  desc_content[commit_idx] <- paste('Commit:', get_commit_id())
+  desc_content[commit_idx] <- paste('ParentCommit:', get_parent_commit_id())
 
   writeLines(desc_content, con = con)
   if(print_output){return(desc_content)}
@@ -42,7 +42,7 @@ get_branch_name <- function() {
   system2(command="git", args="rev-parse --abbrev-ref HEAD", stdout=T)
 }
 
-get_commit_id <- function(){
+get_parent_commit_id <- function(){
   if(!dir.exists('.git')){stop("Can't find .git directory in specified path")}
   system2(command="git", args="rev-parse HEAD", stdout=T)
 }

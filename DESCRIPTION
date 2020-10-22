@@ -1,7 +1,7 @@
 Package: versionr
 Type: Package
 Title: What the Package Does (Title Case)
-Version: 0.0.4
+Version: 0.0.4-1
 Author: Luis Morís Fernández
 Maintainer: Luis Morís Fernández <luis.moris.fernandez@gmail.com>
 Description: Updates the version number in the description file using the git tags.
@@ -9,6 +9,6 @@ License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
-Date: Thu Oct 22 09:32:47 2020
+Date: Thu Oct 22 09:49:41 2020
 Branch: master
-Commit: a4b793ae83a487f8226cb5c55e8c7d4de6b896f6
+Commit: 65dc41184dd99f3de017f919b62936db24cb4407
