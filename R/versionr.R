@@ -32,6 +32,26 @@ current_version <- function(path='.') {
   return(current_version)
 }
 
+current_branch <- function(path='.') {
+  con <- file('DESCRIPTION')#
+  on.exit(close(con))
+
+  desc_content <- readLines(con)
+  version_idx  <- which(startsWith(desc_content, 'Branch:'))
+  current_version <- unlist(strsplit(desc_content[version_idx], split=': ', fixed = T))[2]
+  return(current_version)
+}
+
+current_date <- function(path='.') {
+  con <- file('DESCRIPTION')#
+  on.exit(close(con))
+
+  desc_content <- readLines(con)
+  version_idx  <- which(startsWith(desc_content, 'Date:'))
+  current_version <- unlist(strsplit(desc_content[version_idx], split=': ', fixed = T))[2]
+  return(current_version)
+}
+
 get_describe_head <- function() {
   if(!dir.exists('.git')){stop("Can't find .git directory in specified path")}
   system2(command="git", args="describe HEAD --tags | rev | sed 's/g-/./' | sed 's/-/+/' | rev", stdout=T)
